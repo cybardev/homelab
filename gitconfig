@@ -1,0 +1,22 @@
+[commit]
+	gpgSign = true
+
+[credential]
+	helper = "store"
+
+[gpg]
+	format = "ssh"
+
+[gpg "openpgp"]
+	program = "gpg"
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = false
+
+[user]
+	email = "50134239+cybardev@users.noreply.github.com"
+	name = "cybardev"
+	signingKey = "~/.ssh/id_ed25519.pub"
