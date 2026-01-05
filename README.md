@@ -10,6 +10,9 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - run `doas apk upgrade -U`
 - clone this repository
 - `cd` into cloned repository
+- run `cp example.env .env`
+- edit `.env` file with appropriate values
+  - _Note_: passkeys can be generated using `openssl rand -hex 32`
 - run `doas nerdctl compose up -d`
 
 ## Services
@@ -28,3 +31,4 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [nextcloud/docker](https://github.com/nextcloud/docker)
 - [Forgejo docs](https://forgejo.org/docs/latest/admin/installation/docker/#postgresql-database)
 - [jonas-merkle/container-cloudflare-tunnel](https://github.com/jonas-merkle/container-cloudflare-tunnel)
+- [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
