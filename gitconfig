@@ -17,6 +17,6 @@
 	rebase = false
 
 [user]
-	email = "50134239+cybardev@users.noreply.github.com"
-	name = "cybardev"
+	email = "admin@example.com"
+	name = "admin"
 	signingKey = "~/.ssh/id_ed25519.pub"
