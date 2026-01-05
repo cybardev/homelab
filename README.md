@@ -5,6 +5,13 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 > [!NOTE]
 > OS setup can be found in [etc/](./etc)
 
+## Usage
+- replace [`/etc/apk/world`](./etc/apk/world) and [`/etc/apk/repositories`](./etc/apk/repositories)
+- run `doas apk upgrade -U`
+- clone this repository
+- `cd` into cloned repository
+- run `doas nerdctl compose up -d`
+
 ## Services
 - SearXNG
 - Nextcloud
