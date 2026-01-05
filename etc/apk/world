@@ -10,6 +10,7 @@ curl
 doas
 e2fsprogs
 git
+gpg
 iw
 linux-firmware-i915
 linux-firmware-intel
