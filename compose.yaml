@@ -1,0 +1,145 @@
+services:
+  cloudflare-tunnel:
+    container_name: cloudflare-tunnel
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    network_mode: host
+    hostname: cloudflare-tunnel
+    command: tunnel run
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/hosts:/etc/hosts:ro
+    env_file: ".env"
+    environment:
+      - "TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}"
+    healthcheck:
+      test: ["CMD", "cloudflared", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+
+  redis:
+    container_name: redis
+    image: docker.io/valkey/valkey:8-alpine
+    command: valkey-server --save 30 1 --loglevel warning
+    restart: unless-stopped
+    networks:
+      - searxng
+      - nextcloud
+    volumes:
+      - valkey-data:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  searxng:
+    container_name: searxng
+    image: docker.io/searxng/searxng:latest
+    restart: unless-stopped
+    networks:
+      - searxng
+    ports:
+      - 8888:8080
+    depends_on:
+      - redis
+    volumes:
+      - ./searxng:/etc/searxng:rw
+      - searxng-data:/var/cache/searxng:rw
+    env_file: ".env"
+    environment:
+      - SEARXNG_BASE_URL=http://${SEARXNG_HOSTNAME:-localhost}/
+      - SEARXNG_SETTINGS_PATH=/etc/searxng/settings.json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  nextcloud:
+    container_name: nextcloud
+    image: nextcloud:32-apache
+    restart: unless-stopped
+    networks:
+      - nextcloud
+    ports:
+      - 8080:80
+    depends_on:
+      - redis
+    volumes:
+      - nextcloud-data:/var/www/html
+    env_file: ".env"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  postgres:
+    container_name: postgres
+    image: postgres:14
+    restart: unless-stopped
+    networks:
+      - forgejo
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    env_file: ".env"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  forgejo-init:
+    container_name: forgejo-init
+    image: alpine:3.22
+    networks:
+      - forgejo
+    volumes:
+      - forgejo-data:/data
+    user: root
+    command: chown -R 1000:1000 /data
+
+  forgejo:
+    container_name: forgejo
+    image: codeberg.org/forgejo/forgejo:13
+    restart: unless-stopped
+    networks:
+      - forgejo
+    ports:
+      - 3000:3000
+      - 222:22
+    depends_on:
+      postgres:
+        condition: service_started
+      forgejo-init:
+        condition: service_completed_successfully
+    env_file: ".env"
+    volumes:
+      - forgejo-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+networks:
+  searxng:
+  nextcloud:
+  forgejo:
+
+volumes:
+  valkey-data:
+  searxng-data:
+  nextcloud-data:
+  postgres-data:
+  forgejo-data:
