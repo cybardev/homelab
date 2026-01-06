@@ -16,16 +16,19 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - run `doas nerdctl compose up -d`
 
 ## Services
-- [SearXNG](https://docs.searxng.org/)
-- [Nextcloud](https://nextcloud.com/)
-- [Forgejo](https://forgejo.org/)
-- [Cy | bot](https://github.com/cybardev/cybarbot)
+- [x] [Cy | bot](https://github.com/cybardev/cybarbot)
+- [x] [Forgejo](https://forgejo.org/)
+- [x] [SearXNG](https://docs.searxng.org/)
+- [x] [Nextcloud](https://nextcloud.com/)
+- [x] [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+- [ ] [Ente](https://ente.io/)
+- [ ] [Continuwuity](https://continuwuity.org/)
 
 ## Internal
-- Valkey
-- PostgreSQL
-- Cloudflare Tunnel
-  - `TODO`: replace with [Caddy](https://github.com/searxng/searxng-docker/blob/master/docker-compose.yaml)
+- [Valkey](https://valkey.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/)
+  - `TODO`: replace with [Caddy](https://github.com/searxng/searxng-docker/blob/master/docker-compose.yaml) and/or [Tailscale](https://tailscale.com/)+[Headscale](https://github.com/juanfont/headscale)
 
 ## Credits
 - [searxng/searxng-docker](https://github.com/searxng/searxng-docker)
@@ -33,3 +36,6 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [Forgejo docs](https://forgejo.org/docs/latest/admin/installation/docker/#postgresql-database)
 - [jonas-merkle/container-cloudflare-tunnel](https://github.com/jonas-merkle/container-cloudflare-tunnel)
 - [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- [Vaultwarden Wiki: Using Docker Compose](https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose)
+- [Ente docs: Self-hosting > Docker Compose](https://ente.io/help/self-hosting/installation/compose)
+- [Continuwuity docs: Docker](https://continuwuity.org/deploying/docker.html#for-other-reverse-proxies)

@@ -2,11 +2,13 @@ name: homelab
 
 networks:
   cybarbot:
+  vaultwarden:
   searxng:
   nextcloud:
   forgejo:
 
 volumes:
+  vw-data:
   valkey-data:
   searxng-data:
   db:
@@ -51,6 +53,26 @@ services:
     env_file: ".env"
     environment:
       - BOT_TOKEN=${DISCORD_BOT_TOKEN}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  vaultwarden:
+    image: vaultwarden/server:latest-alpine
+    container_name: vaultwarden
+    restart: unless-stopped
+    networks:
+      - vaultwarden
+    ports:
+      - 9999:80
+    volumes:
+      - vw-data:/data
+    env_file: ".env"
+    environment:
+      DOMAIN: ${VAULTWARDEN_DOMAIN}
+      SIGNUPS_ALLOWED: "false" # Set "true" only for first sign-up
     logging:
       driver: "json-file"
       options:
