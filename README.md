@@ -16,9 +16,10 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - run `doas nerdctl compose up -d`
 
 ## Services
-- SearXNG
-- Nextcloud
-- Forgejo
+- [SearXNG](https://docs.searxng.org/)
+- [Nextcloud](https://nextcloud.com/)
+- [Forgejo](https://forgejo.org/)
+- [Cy | bot](https://github.com/cybardev/cybarbot)
 
 ## Internal
 - Valkey

@@ -1,5 +1,19 @@
 name: homelab
 
+networks:
+  cybarbot:
+  searxng:
+  nextcloud:
+  forgejo:
+
+volumes:
+  valkey-data:
+  searxng-data:
+  db:
+  nextcloud-data:
+  postgres-data:
+  forgejo-data:
+
 services:
   cloudflare-tunnel:
     container_name: cloudflare-tunnel
@@ -26,10 +40,27 @@ services:
         max-size: "100m"
         max-file: "10"
 
+  cybarbot:
+    container_name: cybarbot
+    image: ghcr.io/cybardev/cybarbot:latest
+    restart: unless-stopped
+    networks:
+      - cybarbot
+    ports:
+      - 6767:10000
+    env_file: ".env"
+    environment:
+      - BOT_TOKEN=${DISCORD_BOT_TOKEN}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
   redis:
     container_name: redis
     image: docker.io/valkey/valkey:8-alpine
-    command: valkey-server --save 30 1 --loglevel warning
+    command: valkey-server --save 300 5 --loglevel warning
     restart: unless-stopped
     networks:
       - searxng
@@ -85,7 +116,8 @@ services:
 
   cache:
     container_name: cache
-    image: redis:alpine3.22
+    image: docker.io/valkey/valkey:8-alpine
+    command: valkey-server --save "" --loglevel warning
     restart: unless-stopped
     networks:
       - nextcloud
@@ -174,16 +206,3 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
-
-networks:
-  searxng:
-  nextcloud:
-  forgejo:
-
-volumes:
-  valkey-data:
-  searxng-data:
-  db:
-  nextcloud-data:
-  postgres-data:
-  forgejo-data:
