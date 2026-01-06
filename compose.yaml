@@ -66,14 +66,17 @@ services:
 
   db:
     container_name: db
-    image: mariadb:11
+    image: postgres:14
     restart: unless-stopped
-    command: --transaction-isolation=READ-COMMITTED --bind-address=0.0.0.0
     networks:
       - nextcloud
     volumes:
-      - db:/var/lib/mysql
+      - db:/var/lib/postgresql/data
     env_file: ".env"
+    environment:
+      - POSTGRES_DB=${NEXTCLOUD_DB_NAME}
+      - POSTGRES_USER=${NEXTCLOUD_DB_USER}
+      - POSTGRES_PASSWORD=${NEXTCLOUD_DB_PASSWORD}
     logging:
       driver: "json-file"
       options:
@@ -108,7 +111,10 @@ services:
     env_file: ".env"
     environment:
       - REDIS_HOST=cache
-      - MYSQL_HOST=db
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=${NEXTCLOUD_DB_NAME}
+      - POSTGRES_USER=${NEXTCLOUD_DB_USER}
+      - POSTGRES_PASSWORD=${NEXTCLOUD_DB_PASSWORD}
     logging:
       driver: "json-file"
       options:
