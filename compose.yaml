@@ -33,7 +33,6 @@ services:
     restart: unless-stopped
     networks:
       - searxng
-      - nextcloud
     volumes:
       - valkey-data:/data
     logging:
@@ -65,6 +64,34 @@ services:
         max-size: "1m"
         max-file: "1"
 
+  db:
+    container_name: db
+    image: mariadb:11
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --bind-address=0.0.0.0
+    networks:
+      - nextcloud
+    volumes:
+      - db:/var/lib/mysql
+    env_file: ".env"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  cache:
+    container_name: cache
+    image: redis:alpine3.22
+    restart: unless-stopped
+    networks:
+      - nextcloud
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
   nextcloud:
     container_name: nextcloud
     image: nextcloud:32-apache
@@ -74,10 +101,14 @@ services:
     ports:
       - 8080:80
     depends_on:
-      - redis
+      - cache
+      - db
     volumes:
       - nextcloud-data:/var/www/html
     env_file: ".env"
+    environment:
+      - REDIS_HOST=cache
+      - MYSQL_HOST=db
     logging:
       driver: "json-file"
       options:
@@ -93,6 +124,10 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     env_file: ".env"
+    environment:
+      - POSTGRES_DB=${FORGEJO__database__NAME}
+      - POSTGRES_USER=${FORGEJO__database__USER}
+      - POSTGRES_PASSWORD=${FORGEJO__database__PASSWD}
     logging:
       driver: "json-file"
       options:
@@ -142,6 +177,7 @@ networks:
 volumes:
   valkey-data:
   searxng-data:
+  db:
   nextcloud-data:
   postgres-data:
   forgejo-data:
