@@ -12,6 +12,7 @@ e2fsprogs
 git
 gpg
 iw
+jq
 linux-firmware-i915
 linux-firmware-intel
 linux-firmware-mediatek

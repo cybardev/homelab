@@ -20,6 +20,10 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 20M
 
   searxng:
     container_name: searxng
@@ -43,3 +47,7 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 160M

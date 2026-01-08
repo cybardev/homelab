@@ -16,3 +16,7 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 50M

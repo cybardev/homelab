@@ -18,6 +18,10 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 10M
 
   nextcloud-db:
     container_name: nextcloud-db
@@ -33,6 +37,10 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 75M
 
   nextcloud:
     container_name: nextcloud
@@ -56,3 +64,7 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 400M
