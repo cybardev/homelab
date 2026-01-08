@@ -6,14 +6,14 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 > OS setup can be found in [etc/](./etc)
 
 ## Usage
-- replace [`/etc/apk/world`](./etc/apk/world) and [`/etc/apk/repositories`](./etc/apk/repositories)
+- replace [`/etc/apk/world`](./system/etc/apk/world) and [`/etc/apk/repositories`](./system/etc/apk/repositories)
 - run `doas apk upgrade -U`
 - clone this repository
 - `cd` into cloned repository
-- run `cp example.env .env`
-- edit `.env` file with appropriate values
+- rename `example.env` files in each service directory to `.env`
+- edit `.env` files with appropriate values
   - _Note_: passkeys can be generated using `openssl rand -hex 32`
-- run `doas nerdctl compose up -d`
+- run `doas nerdctl compose up -d` in repository root
 
 ## Services
 - [x] [Cy | bot](https://github.com/cybardev/cybarbot)

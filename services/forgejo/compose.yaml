@@ -1,0 +1,60 @@
+networks:
+  forgejo:
+
+volumes:
+  forgejo-db:
+  forgejo-data:
+
+services:
+  forgejo-db:
+    container_name: forgejo-db
+    image: postgres:14
+    restart: unless-stopped
+    networks:
+      - forgejo
+    volumes:
+      - forgejo-db:/var/lib/postgresql/data
+    env_file: ".env"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  forgejo-init:
+    container_name: forgejo-init
+    image: alpine:3.22
+    networks:
+      - forgejo
+    volumes:
+      - forgejo-data:/data
+    user: root
+    command: chown -R 1000:1000 /data
+
+  forgejo:
+    container_name: forgejo
+    image: codeberg.org/forgejo/forgejo:13
+    restart: unless-stopped
+    networks:
+      - forgejo
+    ports:
+      - 3000:3000
+      - 222:22
+    depends_on:
+      forgejo-db:
+        condition: service_started
+      forgejo-init:
+        condition: service_completed_successfully
+    volumes:
+      - forgejo-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    env_file: ".env"
+    environment:
+      FORGEJO__database__DB_TYPE: postgres
+      FORGEJO__database__HOST: forgejo-db:5432
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"

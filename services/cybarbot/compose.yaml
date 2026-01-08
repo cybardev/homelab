@@ -1,0 +1,18 @@
+networks:
+  cybarbot:
+
+services:
+  cybarbot:
+    container_name: cybarbot
+    image: ghcr.io/cybardev/cybarbot:latest
+    restart: unless-stopped
+    networks:
+      - cybarbot
+    ports:
+      - 6767:10000
+    env_file: ".env"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"

@@ -1,0 +1,25 @@
+networks:
+  vaultwarden:
+
+volumes:
+  data:
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest-alpine
+    container_name: vaultwarden
+    restart: unless-stopped
+    networks:
+      - vaultwarden
+    ports:
+      - 9999:80
+    volumes:
+      - data:/data
+    env_file: ".env"
+    environment:
+      SIGNUPS_ALLOWED: "false" # Set "true" only for first sign-up
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"

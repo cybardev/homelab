@@ -1,0 +1,58 @@
+networks:
+  nextcloud:
+
+volumes:
+  nextcloud-db:
+  nextcloud-data:
+
+services:
+  nextcloud-cache:
+    container_name: nextcloud-cache
+    image: docker.io/valkey/valkey:8-alpine
+    command: valkey-server --save "" --loglevel warning
+    restart: unless-stopped
+    networks:
+      - nextcloud
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  nextcloud-db:
+    container_name: nextcloud-db
+    image: postgres:14
+    restart: unless-stopped
+    networks:
+      - nextcloud
+    volumes:
+      - nextcloud-db:/var/lib/postgresql/data
+    env_file: ".env"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+  nextcloud:
+    container_name: nextcloud
+    image: nextcloud:32-apache
+    restart: unless-stopped
+    networks:
+      - nextcloud
+    ports:
+      - 8080:80
+    depends_on:
+      - nextcloud-cache
+      - nextcloud-db
+    volumes:
+      - nextcloud-data:/var/www/html
+    env_file: ".env"
+    environment:
+      REDIS_HOST: nextcloud-cache
+      POSTGRES_HOST: nextcloud-db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
