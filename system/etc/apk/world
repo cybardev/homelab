@@ -11,6 +11,7 @@ doas
 e2fsprogs
 git
 gpg
+helix
 iw
 jq
 linux-firmware-i915

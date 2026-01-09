@@ -3,7 +3,7 @@
 Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [containerd](https://github.com/containerd/containerd)
 
 > [!NOTE]
-> OS setup can be found in [etc/](./etc)
+> OS setup can be found in [system/](./system)
 
 ## Usage
 - replace [`/etc/apk/world`](./system/etc/apk/world) and [`/etc/apk/repositories`](./system/etc/apk/repositories)
