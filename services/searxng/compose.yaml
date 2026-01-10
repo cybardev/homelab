@@ -42,6 +42,8 @@ services:
     environment:
       SEARXNG_BASE_URL: http://${SEARXNG_HOSTNAME:-localhost}/
       SEARXNG_SETTINGS_PATH: /etc/searxng/settings.json
+      UWSGI_WORKERS: "1"
+      GRANIAN_WORKERS: "1"
     logging:
       driver: "json-file"
       options:

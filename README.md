@@ -19,8 +19,9 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [x] [Cy | bot](https://github.com/cybardev/cybarbot)
 - [x] [Forgejo](https://forgejo.org/)
 - [x] [SearXNG](https://docs.searxng.org/)
-- [x] [Nextcloud](https://nextcloud.com/)
 - [x] [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+- [ ] [Radicale](https://radicale.org/master.html)
+- [ ] [OpenCloud](https://opencloud.eu/en)
 - [ ] [Ente](https://ente.io/)
 - [ ] [Continuwuity](https://continuwuity.org/)
 
@@ -33,6 +34,7 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 ## Credits
 - [searxng/searxng-docker](https://github.com/searxng/searxng-docker)
 - [nextcloud/docker](https://github.com/nextcloud/docker)
+- [OpenCloud docs > Docker](https://docs.opencloud.eu/docs/admin/getting-started/container/docker)
 - [Forgejo docs](https://forgejo.org/docs/latest/admin/installation/docker/#postgresql-database)
 - [jonas-merkle/container-cloudflare-tunnel](https://github.com/jonas-merkle/container-cloudflare-tunnel)
 - [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
