@@ -3,6 +3,7 @@ acf-apk-tools
 acf-core
 acf-openssl
 alpine-base
+apache2-utils
 buildkit
 busybox-mdev-openrc
 containerd

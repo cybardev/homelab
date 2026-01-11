@@ -1,0 +1,29 @@
+networks:
+  radicale:
+
+volumes:
+  radicale-data:
+
+services:
+  radicale:
+    container_name: radicale
+    image: opencloudeu/radicale:latest
+    user: 1000:1000
+    restart: unless-stopped
+    networks:
+      - radicale
+    ports:
+      - 5232:5232
+    volumes:
+      - ./config:/etc/radicale/config
+      - ./users.secret.txt:/etc/radicale/users
+      - radicale-data:/var/lib/radicale
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 50M

@@ -1,0 +1,80 @@
+networks:
+  cloudreve:
+
+volumes:
+  cloudreve-data:
+  cloudreve-cache:
+  cloudreve-db:
+
+services:
+  cloudreve-cache:
+    container_name: cloudreve-cache
+    image: docker.io/valkey/valkey:8-alpine
+    restart: unless-stopped
+    networks:
+      - cloudreve
+    volumes:
+      - cloudreve-cache:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 20M
+
+  cloudreve-db:
+    container_name: cloudreve-db
+    image: postgres:14
+    restart: unless-stopped
+    networks:
+      - cloudreve
+    volumes:
+      - cloudreve-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=cloudreve
+      - POSTGRES_DB=cloudreve
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+
+  cloudreve:
+    container_name: cloudreve
+    image: cloudreve/cloudreve:latest
+    restart: unless-stopped
+    depends_on:
+      - cloudreve-db
+      - cloudreve-cache
+    networks:
+      - cloudreve
+    ports:
+      - 5212:5212
+      - 6888:6888
+      - 6888:6888/udp
+    volumes:
+      - cloudreve-data:/cloudreve/data
+    environment:
+      - CR_CONF_Database.Type=postgres
+      - CR_CONF_Database.Host=cloudreve-db
+      - CR_CONF_Database.User=cloudreve
+      - CR_CONF_Database.Name=cloudreve
+      - CR_CONF_Database.Port=5432
+      - CR_CONF_Redis.Server=cloudreve-cache:6379
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 200M

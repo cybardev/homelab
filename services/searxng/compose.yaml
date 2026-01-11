@@ -9,8 +9,8 @@ services:
   searxng-cache:
     container_name: searxng-cache
     image: docker.io/valkey/valkey:8-alpine
-    command: valkey-server --save 300 5 --loglevel warning
     restart: unless-stopped
+    command: valkey-server --save 300 5 --loglevel warning
     networks:
       - searxng
     volumes:
