@@ -27,7 +27,7 @@ services:
 
   cloudreve-db:
     container_name: cloudreve-db
-    image: postgres:14
+    image: postgres:18-alpine
     restart: unless-stopped
     networks:
       - cloudreve
