@@ -1,0 +1,75 @@
+networks:
+  cobalt:
+
+# volumes:
+#   cobalt-cache:
+
+services:
+  cobalt:
+    container_name: cobalt
+    image: ghcr.io/imputnet/cobalt:latest
+    restart: unless-stopped
+    read_only: true
+    networks:
+      - cobalt
+    ports:
+      - 9000:9000/tcp
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 100M
+    env_file: ".env"
+    environment:
+      CORS_WILDCARD: "0"
+      CORS_URL: https://cobalt.tools
+      # API_REDIS_URL: redis://cobalt-cache:6379
+      API_AUTH_REQUIRED: "1"
+      API_KEY_URL: file:///keys.json
+      FORCE_LOCAL_PROCESSING: always
+      YOUTUBE_ALLOW_BETTER_AUDIO: "0"
+      # YOUTUBE_SESSION_SERVER: http://yt-session-generator:8080
+      # COOKIE_PATH: "/cookies.json" # use cookies to fetch data from services
+    volumes:
+      - ./keys.secret.json:/keys.json:ro
+      # - ./cookies.json:/cookies.json # use cookies to fetch data from services
+
+  # cobalt-cache:
+  #   container_name: cobalt-cache
+  #   image: docker.io/valkey/valkey:8-alpine
+  #   restart: unless-stopped
+  #   networks:
+  #     - cobalt
+  #   volumes:
+  #     - cobalt-cache:/data
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "1m"
+  #       max-file: "1"
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 20M
+
+  # automatically generate poToken & visitor_data
+  # yt-session-generator:
+  #   container_name: yt-session-generator
+  #   image: ghcr.io/imputnet/yt-session-generator:webserver
+  #   restart: unless-stopped
+  #   networks:
+  #     - cobalt
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "1m"
+  #       max-file: "1"
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 50M

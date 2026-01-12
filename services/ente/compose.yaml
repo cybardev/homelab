@@ -2,13 +2,14 @@ networks:
   ente:
 
 volumes:
-  ente-db-data:
-  ente-minio-data:
+  ente-db:
+  ente-minio:
 
 services:
   ente-db:
     container_name: ente-db
     image: postgres:18-alpine
+    restart: unless-stopped
     networks:
       - ente
     env_file: ".env"
@@ -18,15 +19,22 @@ services:
       start_period: 30s
       start_interval: 1s
     volumes:
-      - ente-db-data:/var/lib/postgresql/data
+      - ente-db:/var/lib/postgresql/data
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 50M
 
   ente-minio:
     container_name: ente-minio
     image: minio/minio
+    restart: unless-stopped
     networks:
       - ente
+    ports:
+      - 3200:3200
     volumes:
-      - ente-minio-data:/data
+      - ente-minio:/data
     env_file: ".env"
     command: server /data --address ":3200" --console-address ":3201"
     post_start:
@@ -46,10 +54,15 @@ services:
           mc mb -p wasabi-eu-central-2-v3
           mc mb -p scw-eu-fr-v3
           '
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 50M
 
   ente-server:
     container_name: ente-server
     image: ghcr.io/ente-io/server:latest
+    restart: unless-stopped
     networks:
       - ente
     ports:
@@ -61,10 +74,15 @@ services:
       - ./ente.vol/museum.yaml:/museum.yaml:ro
       - ./ente.vol/data:/data:ro
     env_file: ".env"
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 100M
 
   ente-web:
     container_name: ente-web
     image: ghcr.io/ente-io/web:latest
+    restart: unless-stopped
     networks:
       - ente
     ports:
@@ -78,3 +96,7 @@ services:
     env_file: ".env"
     environment:
       - NODE_ENV=development
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 100M

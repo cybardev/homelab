@@ -18,11 +18,12 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 
 ## Services
 - [x] [Cy | bot](https://github.com/cybardev/cybarbot) — Discord bot
-- [x] [Forgejo](https://forgejo.org/) — git remote frontend
+- [ ] [Forgejo](https://forgejo.org/) — git remote frontend
 - [x] [SearXNG](https://docs.searxng.org/) — (meta)search engine
 - [x] [Vaultwarden](https://github.com/dani-garcia/vaultwarden) — authentication manager
 - [x] [Cloudreve](https://cloudreve.org/) — cloud storage
 - [x] [Radicale](https://radicale.org/master.html) — calendar/contacts sync
+- [x] [Cobalt](https://github.com/imputnet/cobalt) - media downloader
 - [ ] [Ente](https://ente.io/) — encrypted photo cloud
 - [ ] [Continuwuity](https://continuwuity.org/) — Matrix homeserver
 
@@ -41,4 +42,5 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [Vaultwarden Wiki: Using Docker Compose](https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose)
 - [Ente docs: Self-hosting > Docker Compose](https://ente.io/help/self-hosting/installation/compose)
 - [Continuwuity docs: Docker](https://continuwuity.org/deploying/docker.html#for-other-reverse-proxies)
+- [Cobalt docs > run an instance](https://github.com/imputnet/cobalt/blob/8d9bccc4fedabb6842fab71bd14e805f1ea21336/docs/run-an-instance.md)
 - [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
