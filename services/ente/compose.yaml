@@ -20,10 +20,10 @@ services:
       start_interval: 1s
     volumes:
       - ente-db:/var/lib/postgresql/data
-    # deploy:
-    #   resources:
-    #     limits:
-    #       memory: 50M
+    deploy:
+      resources:
+        limits:
+          memory: 50M
 
   ente-minio:
     container_name: ente-minio
@@ -54,10 +54,10 @@ services:
           mc mb -p wasabi-eu-central-2-v3
           mc mb -p scw-eu-fr-v3
           '
-    # deploy:
-    #   resources:
-    #     limits:
-    #       memory: 50M
+    deploy:
+      resources:
+        limits:
+          memory: 50M
 
   ente-server:
     container_name: ente-server
@@ -71,13 +71,13 @@ services:
       ente-db:
         condition: service_healthy
     volumes:
-      - ./ente.vol/museum.yaml:/museum.yaml:ro
-      - ./ente.vol/data:/data:ro
+      - ./museum.secret.yaml:/museum.yaml:ro
+      - ./ente.vol:/data:ro
     env_file: ".env"
-    # deploy:
-    #   resources:
-    #     limits:
-    #       memory: 100M
+    deploy:
+      resources:
+        limits:
+          memory: 100M
 
   ente-web:
     container_name: ente-web
@@ -96,7 +96,7 @@ services:
     env_file: ".env"
     environment:
       - NODE_ENV=development
-    # deploy:
-    #   resources:
-    #     limits:
-    #       memory: 100M
+    deploy:
+      resources:
+        limits:
+          memory: 20M

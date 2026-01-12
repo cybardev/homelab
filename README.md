@@ -12,22 +12,33 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - `cd` into cloned repository
 - rename `example.env` files in each service directory to `.env`
 - edit `.env` files with appropriate values
-  - _Note_: passkeys can be generated using `openssl rand -hex 32`
 - set up Radicale authentication file [as described here](https://radicale.org/v3.html#the-secure-way)
 - run `doas nerdctl compose up -d` in repository root
 
+### Extras
+- passkeys can be generated using `openssl rand -hex 32`
+- extra setup may be needed for some services (e.g. `museum.secret.yaml` for Ente, `keys.secret.json` for Cobalt, etc.). Instructions for each service can be inferred from its respective compose file, adjacent `example` files, as well as docs linked in [Credits](#Credits)
+- for Ente, run the following SQL ([found from here](https://github.com/ente-io/ente/discussions/729#discussioncomment-8781863)) on the SQL DB in the `ente-db` container (replace the number with however many `bytes` you want the user to have; example shows 256 GiB):
+  ```pgsql
+  INSERT INTO storage_bonus (bonus_id, user_id, storage, type, valid_till) VALUES ('self-hosted', (SELECT user_id FROM users LIMIT 1), 274877906944, 'ADD_ON_SUPPORT', 0)
+  ```
+
 ## Services
+
+> [!NOTE]
+> The checkbox indicates compose files for the service has been added to the repository. However, it may be `inactive` in my setup and can be activated by uncommenting the corresponding line in the main [compose.yaml](./compose.yaml) file.
+
 - [x] [Cy | bot](https://github.com/cybardev/cybarbot) — Discord bot
-- [ ] [Forgejo](https://forgejo.org/) — git remote frontend
+- [x] [Forgejo](https://forgejo.org/) — git remote frontend
 - [x] [SearXNG](https://docs.searxng.org/) — (meta)search engine
 - [x] [Vaultwarden](https://github.com/dani-garcia/vaultwarden) — authentication manager
 - [x] [Cloudreve](https://cloudreve.org/) — cloud storage
 - [x] [Radicale](https://radicale.org/master.html) — calendar/contacts sync
 - [x] [Cobalt](https://github.com/imputnet/cobalt) - media downloader
-- [ ] [Ente](https://ente.io/) — encrypted photo cloud
+- [x] [Ente](https://ente.io/) — encrypted photo cloud
 - [ ] [Continuwuity](https://continuwuity.org/) — Matrix homeserver
 
-## Internal
+## Internals
 - [Valkey](https://valkey.io/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/)
