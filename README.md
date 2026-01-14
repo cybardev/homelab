@@ -17,7 +17,7 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 
 ### Extras
 - passkeys can be generated using `openssl rand -hex 32`
-- extra setup may be needed for some services (e.g. `museum.secret.yaml` for Ente, `keys.secret.json` for Cobalt, etc.). Instructions for each service can be inferred from its respective compose file, adjacent `example` files, as well as docs linked in [Credits](#Credits)
+- extra setup may be needed for some services (e.g. `museum.secret.yaml` for Ente, `keys.secret.json` for Cobalt, etc.). Instructions for each service can be inferred from its respective compose file, adjacent `example` files, as well as docs linked in [References](#References)
 - for Ente, run the following SQL ([found from here](https://github.com/ente-io/ente/discussions/729#discussioncomment-8781863)) on the SQL DB in the `ente-db` container (replace the number with however many `bytes` you want the user to have; example shows 256 GiB):
   ```pgsql
   INSERT INTO storage_bonus (bonus_id, user_id, storage, type, valid_till) VALUES ('self-hosted', (SELECT user_id FROM users LIMIT 1), 274877906944, 'ADD_ON_SUPPORT', 0)
