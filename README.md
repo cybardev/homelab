@@ -44,7 +44,7 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/)
   - `TODO`: replace with [Caddy](https://github.com/searxng/searxng-docker/blob/master/docker-compose.yaml) and/or [Tailscale](https://tailscale.com/)+[Headscale](https://github.com/juanfont/headscale)
 
-## Credits
+## References
 - [searxng/searxng-docker](https://github.com/searxng/searxng-docker)
 - [Cloudreve docs > Deploy with Docker Compose](https://docs.cloudreve.org/en/overview/deploy/docker-compose)
 - [OpenCloud Radicale container](https://github.com/opencloud-eu/opencloud-compose/blob/a0d5196dfa4367138fdffa1050cc2bbd13f2e41a/radicale/radicale.yml)
