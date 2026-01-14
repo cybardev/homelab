@@ -52,6 +52,8 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [jonas-merkle/container-cloudflare-tunnel](https://github.com/jonas-merkle/container-cloudflare-tunnel)
 - [Vaultwarden Wiki: Using Docker Compose](https://github.com/dani-garcia/vaultwarden/wiki/Using-Docker-Compose)
 - [Ente docs: Self-hosting > Docker Compose](https://ente.io/help/self-hosting/installation/compose)
+- [Garage docs > Ente](https://git.deuxfleurs.fr/Deuxfleurs/garage/src/commit/60eee993b4e424d3e83fdd5d008a19bb04d5bcbd/doc/book/connect/apps/index.md#ente)
+- [Garage docs > AWS CLI](https://git.deuxfleurs.fr/Deuxfleurs/garage/src/commit/60eee993b4e424d3e83fdd5d008a19bb04d5bcbd/doc/book/quick-start/_index.md#uploading-and-downloading-from-garage)
 - [Continuwuity docs: Docker](https://continuwuity.org/deploying/docker.html#for-other-reverse-proxies)
 - [Cobalt docs > run an instance](https://github.com/imputnet/cobalt/blob/8d9bccc4fedabb6842fab71bd14e805f1ea21336/docs/run-an-instance.md)
 - [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
