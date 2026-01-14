@@ -3,9 +3,9 @@ name: homelab
 include:
   - ./services/cloudflare-tunnel/compose.yaml
   - ./services/cloudreve/compose.yaml
-  - ./services/cobalt/compose.yaml
+  # - ./services/cobalt/compose.yaml
   - ./services/cybarbot/compose.yaml
-  # - ./services/ente/compose.yaml
+  - ./services/ente/compose.yaml
   # - ./services/forgejo/compose.yaml
   - ./services/radicale/compose.yaml
   - ./services/searxng/compose.yaml

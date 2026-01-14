@@ -13,3 +13,6 @@ alias sudo="doas"
 alias docker="sudo nerdctl"
 alias garage="docker exec -it ente-s3 /garage"
 alias recompose="docker compose down && docker compose up -d"
+
+# AWS
+source "$HOME/.awsrc"

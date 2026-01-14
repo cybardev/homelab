@@ -28,9 +28,9 @@ s3:
       # use_path_style_urls: true
       key: enteminio
       secret: <redacted>
-      endpoint: ente-minio:3200
-      region: eu-central-2
-      bucket: b2-eu-cen
+      endpoint: s3-photos.example.com
+      region: garage
+      bucket: ente
 
 internal:
   admin: <redacted>

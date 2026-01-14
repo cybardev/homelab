@@ -4,6 +4,7 @@ acf-core
 acf-openssl
 alpine-base
 apache2-utils
+aws-cli
 buildkit
 busybox-mdev-openrc
 containerd

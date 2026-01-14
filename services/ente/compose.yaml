@@ -23,7 +23,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 50M
+          memory: 60M
 
   ente-s3:
     container_name: ente-s3
@@ -33,7 +33,6 @@ services:
       - ente
     ports:
       - 3900:3900
-      - 3902:3902
     volumes:
       - ./garage.secret.toml:/etc/garage.toml
       - ./ente.vol/garage-meta:/var/lib/garage/meta
@@ -41,7 +40,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 50M
+          memory: 20M
 
   ente-server:
     container_name: ente-server
