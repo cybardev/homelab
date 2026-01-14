@@ -3,7 +3,7 @@ networks:
 
 volumes:
   ente-db:
-  ente-minio:
+  ente-s3:
 
 services:
   ente-db:
@@ -13,7 +13,7 @@ services:
     networks:
       - ente
     env_file: ".env"
-    # Wait for postgres to accept connections before starting museum.
+    # Wait for postgres to accept connections before starting ente-server.
     healthcheck:
       test: pg_isready -q -d ${POSTGRES_DB} -U ${POSTGRES_USER}
       start_period: 30s
@@ -25,35 +25,19 @@ services:
         limits:
           memory: 50M
 
-  ente-minio:
-    container_name: ente-minio
-    image: minio/minio
+  ente-s3:
+    container_name: ente-s3
+    image: dxflrs/garage:v2.1.0
     restart: unless-stopped
     networks:
       - ente
     ports:
-      - 3200:3200
+      - 3900:3900
+      - 3902:3902
     volumes:
-      - ente-minio:/data
-    env_file: ".env"
-    command: server /data --address ":3200" --console-address ":3201"
-    post_start:
-      - command: |
-          sh -c '
-          #!/bin/sh
-
-          while ! mc alias set h0 http://minio:3200 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD} 2>/dev/null
-          do
-            echo "Waiting for minio..."
-            sleep 0.5
-          done
-
-          cd /data
-
-          mc mb -p b2-eu-cen
-          mc mb -p wasabi-eu-central-2-v3
-          mc mb -p scw-eu-fr-v3
-          '
+      - ./garage.secret.toml:/etc/garage.toml
+      - ./ente.vol/garage-meta:/var/lib/garage/meta
+      - ./ente.vol/garage-data:/var/lib/garage/data
     deploy:
       resources:
         limits:
@@ -72,7 +56,7 @@ services:
         condition: service_healthy
     volumes:
       - ./museum.secret.yaml:/museum.yaml:ro
-      - ./ente.vol:/data:ro
+      - ./ente.vol/ente-data:/data:ro
     env_file: ".env"
     deploy:
       resources:
