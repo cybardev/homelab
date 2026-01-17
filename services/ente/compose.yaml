@@ -62,6 +62,15 @@ services:
         limits:
           memory: 100M
 
+  # Resolve S3 endpoint to server localhost
+  ente-socat:
+    container_name: ente-socat
+    image: alpine/socat
+    networks:
+      - ente
+    depends_on: [ente-server]
+    command: "TCP-LISTEN:3900,fork,reuseaddr TCP:ente-s3:3900"
+
   ente-web:
     container_name: ente-web
     image: ghcr.io/ente-io/web:latest

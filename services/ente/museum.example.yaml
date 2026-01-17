@@ -26,9 +26,9 @@ s3:
       # Uncomment the below configuration to override the top-level configuration
       # are_local_buckets: true
       # use_path_style_urls: true
-      key: enteminio
+      key: <redacted>
       secret: <redacted>
-      endpoint: s3-photos.example.com
+      endpoint: localhost:3900
       region: garage
       bucket: ente
 
