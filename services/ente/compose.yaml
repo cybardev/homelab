@@ -20,6 +20,11 @@ services:
       start_interval: 1s
     volumes:
       - ente-db:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
     deploy:
       resources:
         limits:
@@ -37,6 +42,11 @@ services:
       - ./garage.secret.toml:/etc/garage.toml
       - ./ente.vol/garage-meta:/var/lib/garage/meta
       - ./ente.vol/garage-data:/var/lib/garage/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
     deploy:
       resources:
         limits:
@@ -57,6 +67,11 @@ services:
       - ./museum.secret.yaml:/museum.yaml:ro
       - ./ente.vol/ente-data:/data:ro
     env_file: ".env"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
     deploy:
       resources:
         limits:
@@ -70,6 +85,15 @@ services:
       - ente
     depends_on: [ente-server]
     command: "TCP-LISTEN:3900,fork,reuseaddr TCP:ente-s3:3900"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 20M
 
   ente-web:
     container_name: ente-web
@@ -88,6 +112,11 @@ services:
     env_file: ".env"
     environment:
       - NODE_ENV=development
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
     deploy:
       resources:
         limits:
