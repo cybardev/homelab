@@ -18,6 +18,7 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 ### Extras
 - passkeys can be generated using `openssl rand -hex 32`
 - extra setup may be needed for some services (e.g. `museum.secret.yaml` for Ente, `keys.secret.json` for Cobalt, etc.). Instructions for each service can be inferred from its respective compose file, adjacent `example` files, as well as docs linked in [References](#References)
+- for Tailscale services, add them via Admin console, then run `doas nerdctl exec -it tailscale ts-services.sh`
 - for Ente, run the following SQL ([found from here](https://github.com/ente-io/ente/discussions/729#discussioncomment-8781863)) on the SQL DB in the `ente-db` container (replace the number with however many `bytes` you want the user to have; example shows 256 GiB):
   ```pgsql
   INSERT INTO storage_bonus (bonus_id, user_id, storage, type, valid_till) VALUES ('self-hosted', (SELECT user_id FROM users LIMIT 1), 274877906944, 'ADD_ON_SUPPORT', 0)
@@ -41,8 +42,9 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 ## Internals
 - [Valkey](https://valkey.io/)
 - [PostgreSQL](https://www.postgresql.org/)
-- [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/)
-  - `TODO`: replace with [Caddy](https://github.com/searxng/searxng-docker/blob/master/docker-compose.yaml) and/or [Tailscale](https://tailscale.com/)+[Headscale](https://github.com/juanfont/headscale)
+- [Tailscale](https://tailscale.com/)
+  - `TODO`: use [Headscale](https://github.com/juanfont/headscale)
+  - `TODO`: use reverse proxy and/or dynamic DNS for custom domain
 
 ## References
 - [searxng/searxng-docker](https://github.com/searxng/searxng-docker)
