@@ -35,8 +35,9 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [x] [Vaultwarden](https://github.com/dani-garcia/vaultwarden) — authentication manager
 - [x] [Cloudreve](https://cloudreve.org/) — cloud storage
 - [x] [Radicale](https://radicale.org/master.html) — calendar/contacts sync
-- [x] [Cobalt](https://github.com/imputnet/cobalt) - media downloader
+- [x] [Cobalt](https://github.com/imputnet/cobalt) — media downloader
 - [x] [Ente](https://ente.io/) — encrypted photo cloud
+- [x] [4get](https://git.lolcat.ca/lolcat/4get) — (meta)search engine
 - [ ] [Continuwuity](https://continuwuity.org/) — Matrix homeserver
 
 ## Internals

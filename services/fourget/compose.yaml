@@ -1,0 +1,23 @@
+networks:
+  fourget:
+
+services:
+  fourget:
+    container_name: fourget
+    image: luuul/4get:latest
+    restart: unless-stopped
+    networks:
+      - fourget
+    ports:
+      - 8888:80
+    environment:
+      - FOURGET_PROTO=http
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 100M

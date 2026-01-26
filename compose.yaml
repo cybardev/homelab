@@ -7,6 +7,7 @@ include:
   # - ./services/cybarbot/compose.yaml
   - ./services/ente/compose.yaml
   # - ./services/forgejo/compose.yaml
+  # - ./services/fourget/compose.yaml
   - ./services/radicale/compose.yaml
   - ./services/searxng/compose.yaml
   - ./services/tailscale/compose.yaml
