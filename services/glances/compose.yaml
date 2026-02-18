@@ -1,0 +1,27 @@
+networks:
+  glances:
+
+services:
+  glances:
+    container_name: glances
+    image: nicolargo/glances:latest
+    restart: unless-stopped
+    pid: host
+    networks:
+      - glances
+    ports:
+      - 61208:61208
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/os-release:/etc/os-release:ro
+    environment:
+      - "GLANCES_OPT=-w"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    deploy:
+      resources:
+        limits:
+          memory: 50M

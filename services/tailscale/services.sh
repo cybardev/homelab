@@ -1,4 +1,5 @@
 #!/bin/sh
+tailscale serve --service=svc:glances --https=443 127.0.0.1:61208
 tailscale serve --service=svc:vault --https=443 127.0.0.1:9999
 tailscale serve --service=svc:drive --https=443 127.0.0.1:5212
 tailscale serve --service=svc:search --https=443 127.0.0.1:8888

@@ -38,6 +38,7 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [x] [Cobalt](https://github.com/imputnet/cobalt) — media downloader
 - [x] [Ente](https://ente.io/) — encrypted photo cloud
 - [x] [4get](https://git.lolcat.ca/lolcat/4get) — (meta)search engine
+- [x] [Glances](https://github.com/nicolargo/glances) - system monitor
 - [ ] [Continuwuity](https://continuwuity.org/) — Matrix homeserver
 
 ## Internals
@@ -59,4 +60,5 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [Garage docs > AWS CLI](https://git.deuxfleurs.fr/Deuxfleurs/garage/src/commit/60eee993b4e424d3e83fdd5d008a19bb04d5bcbd/doc/book/quick-start/_index.md#uploading-and-downloading-from-garage)
 - [Continuwuity docs: Docker](https://continuwuity.org/deploying/docker.html#for-other-reverse-proxies)
 - [Cobalt docs > run an instance](https://github.com/imputnet/cobalt/blob/8d9bccc4fedabb6842fab71bd14e805f1ea21336/docs/run-an-instance.md)
+- [Glances docs > Docker](https://glances.readthedocs.io/en/develop/docker.html)
 - [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)

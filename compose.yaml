@@ -8,6 +8,7 @@ include:
   # - ./services/ente/compose.yaml
   # - ./services/forgejo/compose.yaml
   # - ./services/fourget/compose.yaml
+  - ./services/glances/compose.yaml
   - ./services/radicale/compose.yaml
   - ./services/searxng/compose.yaml
   - ./services/tailscale/compose.yaml
