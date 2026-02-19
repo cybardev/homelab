@@ -12,10 +12,11 @@ services:
     ports:
       - 61208:61208
     volumes:
+      - ./glances.conf:/etc/glances/glances.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/os-release:/etc/os-release:ro
     environment:
-      - "GLANCES_OPT=-w"
+      GLANCES_OPT: "-w"
     logging:
       driver: "json-file"
       options:

@@ -13,7 +13,13 @@ alias sudo="doas"
 alias docker="sudo nerdctl"
 alias garage="docker exec -it ente-s3 /garage"
 alias tailup="docker exec -it tailscale ts-services.sh"
-alias recompose="docker compose down && docker compose up -d"
+recompose() {
+  docker compose down
+  sleep 3
+  docker compose up -d
+  sleep 3
+  tailup
+}
 
 # AWS
 source "$HOME/.awsrc"
