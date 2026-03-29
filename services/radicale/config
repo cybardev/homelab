@@ -257,9 +257,18 @@ predefined_collections = {
        "D:displayname": "Personal Address Book",
        "tag": "VADDRESSBOOK"
     },
+    "work-addressbook": {
+       "D:displayname": "Work Address Book",
+       "tag": "VADDRESSBOOK"
+    },
     "def-calendar": {
        "C:supported-calendar-component-set": "VEVENT,VJOURNAL,VTODO",
        "D:displayname": "Personal Calendar",
+       "tag": "VCALENDAR"
+    },
+    "work-calendar": {
+       "C:supported-calendar-component-set": "VEVENT,VJOURNAL,VTODO",
+       "D:displayname": "Work Calendar",
        "tag": "VCALENDAR"
     }
   }
