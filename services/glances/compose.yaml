@@ -1,16 +1,14 @@
-networks:
-  glances:
-
 services:
   glances:
     container_name: glances
     image: nicolargo/glances:latest
     restart: unless-stopped
     pid: host
-    networks:
-      - glances
     ports:
-      - 61208:61208
+      - 127.0.0.1:61208:61208
+    depends_on:
+      tailscale:
+        condition: service_started
     volumes:
       - ./glances.conf:/etc/glances/glances.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock
@@ -25,4 +23,4 @@ services:
     deploy:
       resources:
         limits:
-          memory: 50M
+          memory: 60M

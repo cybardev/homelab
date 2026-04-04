@@ -23,7 +23,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 50M
+          memory: 60M
 
   forgejo-init:
     container_name: forgejo-init
@@ -39,16 +39,21 @@ services:
     container_name: forgejo
     image: codeberg.org/forgejo/forgejo:13
     restart: unless-stopped
-    networks:
-      - forgejo
-    ports:
-      - 3443:3000
-      - 222:22
     depends_on:
       forgejo-db:
         condition: service_started
       forgejo-init:
         condition: service_completed_successfully
+      cloudflare-tunnel:
+        condition: service_started
+      tailscale:
+        condition: service_started
+    networks:
+      - forgejo
+      - cloudflare
+    ports:
+      - 3443:3000
+      - 222:22
     volumes:
       - forgejo-data:/data
       - /etc/timezone:/etc/timezone:ro
