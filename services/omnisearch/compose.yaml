@@ -1,0 +1,24 @@
+services:
+  omnisearch:
+    container_name: omnisearch
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - cloudflare-tunnel
+    networks:
+      - cloudflare
+    volumes:
+      - ./locales:/app/locales
+      - ./config.ini:/etc/omnisearch/config.ini
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    deploy:
+      resources:
+        limits:
+          memory: 20M
+          cpus: "0.86"

@@ -9,6 +9,7 @@ include:
   # - ./services/forgejo/compose.yaml
   # - ./services/fourget/compose.yaml
   - ./services/glances/compose.yaml
+  - ./services/omnisearch/compose.yaml
   - ./services/radicale/compose.yaml
   - ./services/searxng/compose.yaml
   - ./services/tailscale/compose.yaml
