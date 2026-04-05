@@ -39,6 +39,7 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [x] [Ente](https://ente.io/) — encrypted photo cloud
 - [x] [4get](https://git.lolcat.ca/lolcat/4get) — (meta)search engine
 - [x] [Glances](https://github.com/nicolargo/glances) - system monitor
+- [x] [OmniSearch](https://git.bwaaa.monster/omnisearch/about/) - (meta)search engine
 - [ ] [Continuwuity](https://continuwuity.org/) — Matrix homeserver
 
 ## Internals

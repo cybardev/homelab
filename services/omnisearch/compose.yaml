@@ -1,17 +1,16 @@
 services:
   omnisearch:
     container_name: omnisearch
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # first run `git clone https://git.bwaaa.monster/omnisearch source.vol` in this directory
+    build: ./source.vol
     restart: unless-stopped
     depends_on:
       - cloudflare-tunnel
     networks:
       - cloudflare
     volumes:
-      - ./locales:/app/locales
-      - ./config.ini:/etc/omnisearch/config.ini
+      - ./source.vol/locales:/app/locales:ro
+      - ./config.ini:/etc/omnisearch/config.ini:ro
     logging:
       driver: "json-file"
       options:
