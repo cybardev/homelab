@@ -1,7 +1,6 @@
 services:
   omnisearch:
     container_name: omnisearch
-    # first run `git clone https://git.bwaaa.monster/omnisearch source.vol` in this directory
     build: ./source.vol
     restart: unless-stopped
     depends_on:
