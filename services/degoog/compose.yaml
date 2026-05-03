@@ -1,0 +1,22 @@
+services:
+  degoog:
+    container_name: degoog
+    image: ghcr.io/degoog-org/degoog:latest
+    restart: unless-stopped
+    depends_on:
+      - cloudflare-tunnel
+    networks:
+      - cloudflare
+    volumes:
+      - ./data.vol:/app/data
+    environment:
+      DEGOOG_PUBLIC_INSTANCE: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 120M

@@ -30,16 +30,17 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 > The checkbox indicates compose files for the service has been added to the repository. However, it may be `inactive` in my setup and can be activated by uncommenting the corresponding line in the main [compose.yaml](./compose.yaml) file.
 
 - [x] [Cy | bot](https://github.com/cybardev/cybarbot) — Discord bot
+- [x] [Glances](https://github.com/nicolargo/glances) - system monitor
+- [x] [Vaultwarden](https://github.com/dani-garcia/vaultwarden) — authentication manager
+- [x] [Radicale](https://radicale.org/master.html) — calendar/contacts sync
+- [x] [Cloudreve](https://cloudreve.org/) — cloud storage
+- [x] [Ente](https://ente.io/) — encrypted photo cloud
 - [x] [Forgejo](https://forgejo.org/) — git remote frontend
 - [x] [SearXNG](https://docs.searxng.org/) — (meta)search engine
-- [x] [Vaultwarden](https://github.com/dani-garcia/vaultwarden) — authentication manager
-- [x] [Cloudreve](https://cloudreve.org/) — cloud storage
-- [x] [Radicale](https://radicale.org/master.html) — calendar/contacts sync
-- [x] [Cobalt](https://github.com/imputnet/cobalt) — media downloader
-- [x] [Ente](https://ente.io/) — encrypted photo cloud
-- [x] [4get](https://git.lolcat.ca/lolcat/4get) — (meta)search engine
-- [x] [Glances](https://github.com/nicolargo/glances) - system monitor
 - [x] [OmniSearch](https://git.bwaaa.monster/omnisearch/about/) - (meta)search engine
+- [x] [degoog](https://github.com/degoog-org/degoog) - (meta)search engine
+- [x] [4get](https://git.lolcat.ca/lolcat/4get) — (meta)search engine
+- [x] [Cobalt](https://github.com/imputnet/cobalt) — media downloader
 - [ ] [Continuwuity](https://continuwuity.org/) — Matrix homeserver
 
 ## Internals
