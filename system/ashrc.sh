@@ -5,6 +5,7 @@
 # system
 alias x="exit"
 alias clr="clear"
+alias lg="git status"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias sudo="doas"
