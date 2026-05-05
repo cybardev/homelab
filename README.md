@@ -64,3 +64,4 @@ Minimal server setup on [Alpine Linux](https://www.alpinelinux.org/) with [conta
 - [Cobalt docs > run an instance](https://github.com/imputnet/cobalt/blob/8d9bccc4fedabb6842fab71bd14e805f1ea21336/docs/run-an-instance.md)
 - [Glances docs > Docker](https://glances.readthedocs.io/en/develop/docker.html)
 - [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- [Forgejo Evergarden theme](https://github.com/everviolet/gitea)

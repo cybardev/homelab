@@ -1,10 +1,6 @@
 networks:
   forgejo:
 
-volumes:
-  forgejo-db:
-  forgejo-data:
-
 services:
   forgejo-db:
     container_name: forgejo-db
@@ -13,7 +9,7 @@ services:
     networks:
       - forgejo
     volumes:
-      - forgejo-db:/var/lib/postgresql/data
+      - ./db.vol:/var/lib/postgresql/data
     env_file: ".env"
     logging:
       driver: "json-file"
@@ -27,17 +23,17 @@ services:
 
   forgejo-init:
     container_name: forgejo-init
-    image: alpine:3.22
+    image: alpine:3.23
     networks:
       - forgejo
     volumes:
-      - forgejo-data:/data
+      - ./data.vol:/data
     user: root
     command: chown -R 1000:1000 /data
 
   forgejo:
     container_name: forgejo
-    image: codeberg.org/forgejo/forgejo:13
+    image: codeberg.org/forgejo/forgejo:15
     restart: unless-stopped
     depends_on:
       forgejo-db:
@@ -52,16 +48,19 @@ services:
       - forgejo
       - cloudflare
     ports:
-      - 3443:3000
       - 222:22
     volumes:
-      - forgejo-data:/data
+      - ./data.vol:/data
+      - ./public:/data/gitea/public
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     env_file: ".env"
     environment:
       FORGEJO__database__DB_TYPE: postgres
       FORGEJO__database__HOST: forgejo-db:5432
+      FORGEJO__server__SSH_LISTEN_HOST: 0.0.0.0
+      FORGEJO__server__SSH_LISTEN_PORT: 22
+      FORGEJO__server__SSH_PORT: 222
     logging:
       driver: "json-file"
       options:

@@ -1,0 +1,854 @@
+/* evergarden summer */
+:root {
+  color-scheme: light;
+  --is-dark-theme: false;
+  accent-color: #91ac75;
+  --color-primary: #91ac75;
+  --color-primary-contrast: #d7e1eb;
+  --color-primary-hover: rgb(157.6923076923, 181.5769230769, 132.9230769231);
+  --color-primary-dark-1: rgb(152.6153846154, 177.7461538462, 126.5538461538);
+  --color-primary-dark-2: rgb(160.2307692308, 183.4923076923, 136.1076923077);
+  --color-primary-dark-3: rgb(167.8461538462, 189.2384615385, 145.6615384615);
+  --color-primary-dark-4: rgb(175.4615384615, 194.9846153846, 155.2153846154);
+  --color-primary-dark-5: rgb(183.0769230769, 200.7307692308, 164.7692307692);
+  --color-primary-dark-6: rgb(190.6923076923, 206.4769230769, 174.3230769231);
+  --color-primary-dark-7: rgb(198.3076923077, 212.2230769231, 183.8769230769);
+  --color-primary-light-1: rgb(137.3846153846, 166.2538461538, 107.4461538462);
+  --color-primary-light-2: rgb(129.7692307692, 160.5076923077, 97.8923076923);
+  --color-primary-light-3: rgb(122.1, 151.8, 91.3);
+  --color-primary-light-4: rgb(114.4153846154, 142.2461538462, 85.5538461538);
+  --color-primary-light-5: rgb(106.7307692308, 132.6923076923, 79.8076923077);
+  --color-primary-light-6: rgb(99.0461538462, 123.1384615385, 74.0615384615);
+  --color-primary-light-7: rgb(91.3615384615, 113.5846153846, 68.3153846154);
+  --color-primary-alpha-10: rgba(145, 172, 117, 0.1);
+  --color-primary-alpha-20: rgba(145, 172, 117, 0.2);
+  --color-primary-alpha-30: rgba(145, 172, 117, 0.3);
+  --color-primary-alpha-40: rgba(145, 172, 117, 0.4);
+  --color-primary-alpha-50: rgba(145, 172, 117, 0.5);
+  --color-primary-alpha-60: rgba(145, 172, 117, 0.6);
+  --color-primary-alpha-70: rgba(145, 172, 117, 0.7);
+  --color-primary-alpha-80: rgba(145, 172, 117, 0.8);
+  --color-primary-alpha-90: rgba(145, 172, 117, 0.9);
+  --color-secondary: #b4c6cc;
+  --color-secondary-dark-1: rgb(196.62875, 209.7325, 218.07125);
+  --color-secondary-dark-2: rgb(187.2575, 202.465, 212.1425);
+  --color-secondary-dark-3: rgb(177.88625, 195.1975, 206.21375);
+  --color-secondary-dark-4: rgb(168.515, 187.93, 200.285);
+  --color-secondary-dark-5: rgb(159.14375, 180.6625, 194.35625);
+  --color-secondary-dark-6: rgb(149.7725, 173.395, 188.4275);
+  --color-secondary-dark-7: rgb(140.40125, 166.1275, 182.49875);
+  --color-secondary-dark-8: rgb(131.03, 158.86, 176.57);
+  --color-secondary-dark-9: rgb(121.65875, 151.5925, 170.64125);
+  --color-secondary-dark-10: rgb(112.2875, 144.325, 164.7125);
+  --color-secondary-dark-11: rgb(102.91625, 137.0575, 158.78375);
+  --color-secondary-dark-12: rgb(95.48, 129.36, 150.92);
+  --color-secondary-dark-13: rgb(89.55125, 121.3275, 141.54875);
+  --color-secondary-light-1: rgb(215.37125, 224.2675, 229.92875);
+  --color-secondary-light-2: rgb(224.7425, 231.535, 235.8575);
+  --color-secondary-light-3: rgb(234.11375, 238.8025, 241.78625);
+  --color-secondary-light-4: rgb(243.485, 246.07, 247.715);
+  --color-secondary-alpha-10: rgba(206, 217, 224, 0.1);
+  --color-secondary-alpha-20: rgba(206, 217, 224, 0.2);
+  --color-secondary-alpha-30: rgba(206, 217, 224, 0.3);
+  --color-secondary-alpha-40: rgba(206, 217, 224, 0.4);
+  --color-secondary-alpha-50: rgba(206, 217, 224, 0.5);
+  --color-secondary-alpha-60: rgba(206, 217, 224, 0.6);
+  --color-secondary-alpha-70: rgba(206, 217, 224, 0.7);
+  --color-secondary-alpha-80: rgba(206, 217, 224, 0.8);
+  --color-secondary-alpha-90: rgba(206, 217, 224, 0.9);
+  /* colors */
+  --color-red: #c0696b;
+  --color-orange: #c1866b;
+  --color-yellow: #bc9c6b;
+  --color-olive: #91ac75;
+  --color-green: #91ac75;
+  --color-aqua: #7baa92;
+  --color-blue: #8ca0bb;
+  --color-violet: #7fa0aa;
+  --color-purple: #ab9ac6;
+  --color-pink: #ca9ebd;
+  --color-brown: #ceabbf;
+  --color-grey: #63787d;
+  --color-black: #c8d5e1;
+  /* light variants - produced via Sass scale-color(color, $lightness: -10%) */
+  --color-red-light: rgb(207.0845070423, 140.9154929577, 142.4366197183);
+  --color-orange-light: rgb(208.0571428571, 163.3857142857, 142.9428571429);
+  --color-yellow-light: rgb(203.8930232558, 179.4837209302, 142.1069767442);
+  --color-olive-light: rgb(170.3846153846, 191.1538461538, 148.8461538462);
+  --color-green-light: rgb(170.3846153846, 191.1538461538, 148.8461538462);
+  --color-aqua-light: rgb(154.0230414747, 189.9769585253, 171.6175115207);
+  --color-blue-light: rgb(172.0491803279, 186.4754098361, 205.9508196721);
+  --color-violet-light: rgb(157.6478873239, 182.7464788732, 190.3521126761);
+  --color-purple-light: rgb(198.1139240506, 186.6012658228, 216.3987341772);
+  --color-pink-light: rgb(220.02, 190.98, 211.44);
+  --color-brown-light: rgb(224.7894736842, 203.2105263158, 215.5413533835);
+  --color-grey-light: rgb(123.8616071429, 145.8928571429, 151.1383928571);
+  --color-black-light: rgb(233, 238.2, 243);
+  /* dark 1 variants - produced via Sass scale-color(color, $lightness: -10%) */
+  --color-red-dark-1: rgb(207.0845070423, 140.9154929577, 142.4366197183);
+  --color-orange-dark-1: rgb(208.0571428571, 163.3857142857, 142.9428571429);
+  --color-yellow-dark-1: rgb(203.8930232558, 179.4837209302, 142.1069767442);
+  --color-olive-dark-1: rgb(170.3846153846, 191.1538461538, 148.8461538462);
+  --color-green-dark-1: rgb(170.3846153846, 191.1538461538, 148.8461538462);
+  --color-aqua-dark-1: rgb(154.0230414747, 189.9769585253, 171.6175115207);
+  --color-blue-dark-1: rgb(172.0491803279, 186.4754098361, 205.9508196721);
+  --color-violet-dark-1: rgb(157.6478873239, 182.7464788732, 190.3521126761);
+  --color-purple-dark-1: rgb(198.1139240506, 186.6012658228, 216.3987341772);
+  --color-pink-dark-1: rgb(220.02, 190.98, 211.44);
+  --color-brown-dark-1: rgb(224.7894736842, 203.2105263158, 215.5413533835);
+  --color-black-dark-1: rgb(233, 238.2, 243);
+  /* dark 2 variants - produced via Sass scale-color(color, $lightness: -20%) */
+  --color-red-dark-2: rgb(222.1690140845, 176.8309859155, 177.8732394366);
+  --color-orange-dark-2: rgb(223.1142857143, 192.7714285714, 178.8857142857);
+  --color-yellow-dark-2: rgb(219.7860465116, 202.9674418605, 177.2139534884);
+  --color-olive-dark-2: rgb(195.7692307692, 210.3076923077, 180.6923076923);
+  --color-green-dark-2: rgb(195.7692307692, 210.3076923077, 180.6923076923);
+  --color-aqua-dark-2: rgb(185.0460829493, 209.9539170507, 197.2350230415);
+  --color-blue-dark-2: rgb(204.0983606557, 212.9508196721, 224.9016393443);
+  --color-violet-dark-2: rgb(188.2957746479, 205.4929577465, 210.7042253521);
+  --color-purple-dark-2: rgb(225.2278481013, 219.2025316456, 234.7974683544);
+  --color-pink-dark-2: rgb(238.04, 223.96, 233.88);
+  --color-brown-dark-2: rgb(243.5789473684, 235.4210526316, 240.0827067669);
+  --color-black-dark-2: hsl(208.8, 29.4117647059%, 103.3333333333%);
+  /* other colors */
+  --color-gold: #ceabbf;
+  --color-white: #171c1f;
+  --color-diff-removed-word-bg: rgba(192, 105, 107, 0.15);
+  --color-diff-added-word-bg: rgba(145, 172, 117, 0.15);
+  --color-diff-removed-row-bg: rgba(192, 105, 107, 0.07);
+  --color-diff-moved-row-bg: rgba(188, 156, 107, 0.07);
+  --color-diff-added-row-bg: rgba(145, 172, 117, 0.07);
+  --color-diff-removed-row-border: rgba(192, 105, 107, 0.07);
+  --color-diff-moved-row-border: rgba(188, 156, 107, 0.07);
+  --color-diff-added-row-border: rgba(145, 172, 117, 0.07);
+  --color-diff-inactive: #63787d;
+  --color-error-border: #c0696b;
+  --color-error-bg: #c0696b;
+  --color-error-bg-active: rgb(199.5422535211, 122.9577464789, 124.7183098592);
+  --color-error-bg-hover: rgb(207.0845070423, 140.9154929577, 142.4366197183);
+  --color-error-text: #d7e1eb;
+  --color-success-border: rgb(170.3846153846, 191.1538461538, 148.8461538462);
+  --color-success-bg: #91ac75;
+  --color-success-text: #d7e1eb;
+  --color-warning-border: rgb(203.8930232558, 179.4837209302, 142.1069767442);
+  --color-warning-bg: #bc9c6b;
+  --color-warning-text: #d7e1eb;
+  --color-info-border: rgb(172.0491803279, 186.4754098361, 205.9508196721);
+  --color-info-bg: #d7e1eb;
+  --color-info-text: #171c1f;
+  --color-red-badge: rgb(207.0845070423, 140.9154929577, 142.4366197183);
+  --color-red-badge-bg: #d7e1eb;
+  --color-red-badge-hover-bg: rgb(199.5422535211, 122.9577464789, 124.7183098592);
+  --color-green-badge: #91ac75;
+  --color-green-badge-bg: #91ac75;
+  --color-green-badge-hover-bg: rgb(157.6923076923, 181.5769230769, 132.9230769231);
+  --color-yellow-badge: #bc9c6b;
+  --color-yellow-badge-bg: #d7e1eb;
+  --color-yellow-badge-hover-bg: rgb(195.9465116279, 167.7418604651, 124.5534883721);
+  --color-orange-badge: #c1866b;
+  --color-orange-badge-bg: #d7e1eb;
+  --color-orange-badge-hover-bg: rgb(200.5285714286, 148.6928571429, 124.9714285714);
+  --color-git: #c1866b;
+  --color-highlight-bg: rgba(188, 156, 107, 0.15);
+  /* target-based colors */
+  --color-body: #d7e1eb;
+  --color-box-header: #c8d5e1;
+  --color-box-body: #c8d5e1;
+  --color-box-body-highlight: #ced9e0;
+  --color-text-dark: #526469;
+  --color-text: #171c1f;
+  --color-text-light: #415055;
+  --color-text-light-1: #415055;
+  --color-text-light-2: #415055;
+  --color-text-light-3: #415055;
+  --color-footer: #c8d5e1;
+  --color-timeline: #ced9e0;
+  --color-input-text: #171c1f;
+  --color-input-background: #ced9e0;
+  --color-input-toggle-background: #ced9e0;
+  --color-input-border: #b4c6cc;
+  --color-input-border-hover: #9cb2b8;
+  --color-nav-bg: #c8d5e1;
+  --color-nav-hover-bg: var(--color-hover);
+  --color-navbar: #c8d5e1;
+  --color-navbar-transparent: rgba(215, 225, 235, 0);
+  --color-light: rgba(156, 178, 184, 0.3);
+  --color-light-mimic-enabled: rgba(
+    0,
+    0,
+    0,
+    calc(40 / 255 * 222 / 255 / var(--opacity-disabled))
+  );
+  --color-light-border: #9cb2b8;
+  --color-hover: rgba(135, 157, 164, 0.2);
+  --color-active: rgba(23, 28, 31, 0.1);
+  --color-menu: #ced9e0;
+  --color-card: #ced9e0;
+  --color-markup-table-row: rgba(23, 28, 31, 0.02);
+  --color-markup-code-block: rgba(23, 28, 31, 0.05);
+  --color-markup-code-inline: #ced9e0;
+  --color-button: #ced9e0;
+  --color-code-bg: #d7e1eb;
+  --color-code-sidebar-bg: #ced9e0;
+  --color-shadow: rgba(215, 225, 235, 0.1);
+  --color-tooltip-bg: #ced9e0;
+  --color-tooltip-text: var(--color-text);
+  --color-secondary-bg: #ced9e0;
+  --color-text-focus: #171c1f;
+  --color-expand-button: #9cb2b8;
+  --color-placeholder-text: #526469;
+  --color-editor-line-highlight: var(--color-primary-light-5);
+  --color-project-board-bg: var(--color-secondary-light-2);
+  /* gitea source code: */
+  /* should ideally be --color-text-dark, see go-gitea/gitea#15651 */
+  --color-caret: var(--color-text);
+  --color-reaction-bg: rgba(23, 28, 31, 0.07);
+  --color-reaction-active-bg: var(--color-primary-alpha-40);
+  --color-header-wrapper: #c8d5e1;
+  --color-header-wrapper-transparent: rgba(200, 213, 225, 0);
+  --color-label-text: #bdcbdb;
+  --color-label-bg: #91ac75;
+  --color-label-hover-bg: rgb(160.2307692308, 183.4923076923, 136.1076923077);
+  --color-label-active-bg: rgb(152.6153846154, 177.7461538462, 126.5538461538);
+  --color-accent: var(--color-primary-light-1);
+  --color-small-accent: var(--color-primary-light-5);
+  --color-active-line: #b4c6cc;
+}
+
+.ui.ui.ui.button:not(.inverted, .basic).primary, .ui.ui.ui.button:not(.inverted, .basic).green, .ui.ui.ui.button:not(.inverted, .basic).red, .ui.ui.ui.button:not(.inverted, .basic).aqua,
+.ui.ui.ui.label:not(.inverted, .basic).primary,
+.ui.ui.ui.label:not(.inverted, .basic).green,
+.ui.ui.ui.label:not(.inverted, .basic).red,
+.ui.ui.ui.label:not(.inverted, .basic).aqua {
+  color: #d7e1eb;
+}
+.ui.ui.ui.button:not(.inverted, .basic).primary:hover, .ui.ui.ui.button:not(.inverted, .basic).green:hover, .ui.ui.ui.button:not(.inverted, .basic).red:hover, .ui.ui.ui.button:not(.inverted, .basic).aqua:hover,
+.ui.ui.ui.label:not(.inverted, .basic).primary:hover,
+.ui.ui.ui.label:not(.inverted, .basic).green:hover,
+.ui.ui.ui.label:not(.inverted, .basic).red:hover,
+.ui.ui.ui.label:not(.inverted, .basic).aqua:hover {
+  color: #bdcbdb;
+}
+
+.ui.basic.modal {
+  background-color: #bdcbdb;
+}
+
+.ui.commit-header-row .svg.gitea-lock ~ a {
+  color: #d7e1eb;
+}
+
+.ui.negative.message .header {
+  color: var(--color-error-text);
+}
+
+.ui.sha.isSigned.isVerified .shortsha {
+  color: #d7e1eb;
+}
+.ui.sha.isSigned.isVerified svg.gitea-lock {
+  fill: #d7e1eb;
+}
+
+.ui.basic.modal,
+.ui.basic.modal > .header,
+.ui.inverted.button {
+  color: #171c1f !important;
+}
+
+#repo-topics,
+#topic_edit > .ui.selection.dropdown {
+  color: var(--color-label-text) !important;
+}
+
+#manage_topic {
+  color: var(--color-text-light-2) !important;
+}
+
+blockquote.attention-tip {
+  border-left-color: var(--color-success-bg);
+}
+blockquote.attention-warning {
+  border-left-color: var(--color-warning-bg);
+}
+
+svg.attention-tip,
+strong.attention-tip {
+  color: var(--color-success-bg);
+}
+svg.attention-warning,
+strong.attention-warning {
+  color: var(--color-warning-bg);
+}
+
+.inline-code-block {
+  color: #bdcbdb;
+}
+
+::selection {
+  background: rgba(145, 172, 117, 0.3) !important;
+}
+
+/* NameBuiltinPseudo */
+.chroma .bp {
+  color: #c1866b;
+}
+
+/* Comment */
+.chroma .c {
+  color: #879da4;
+}
+
+/* CommentSingle */
+.chroma .c1 {
+  color: #879da4;
+}
+
+/* CommentHashbang */
+.chroma .ch {
+  color: #879da4;
+}
+
+/* CommentMultiline */
+.chroma .cm {
+  color: #879da4;
+}
+
+/* CommentPreproc */
+.chroma .cp {
+  color: #8ca0bb;
+}
+
+/* CommentPreprocFile */
+.chroma .cpf {
+  color: #8ca0bb;
+}
+
+/* CommentSpecial */
+.chroma .cs {
+  color: #879da4;
+}
+
+/* LiteralStringDelimiter */
+.chroma .dl {
+  color: #8ca0bb;
+}
+
+/* NameFunctionMagic */
+/* Generic */
+/* GenericDeleted */
+.chroma .gd {
+  color: #171c1f;
+  background-color: rgba(192, 105, 107, 0.15);
+}
+
+/* GenericEmph */
+.chroma .ge {
+  font-style: italic;
+}
+
+/* GenericHeading */
+.chroma .gh {
+  color: #79a39b;
+}
+
+/* GenericInserted */
+.chroma .gi {
+  color: #171c1f;
+  background-color: rgba(145, 172, 117, 0.15);
+}
+
+/* GenericUnderline */
+/* GenericOutput */
+.chroma .go {
+  color: #c1866b;
+}
+
+/* GenericPrompt */
+.chroma .gp {
+  color: #879da4;
+  font-weight: bold;
+}
+
+/* GenericError */
+.chroma .gr {
+  color: #c0696b;
+}
+
+/* GenericStrong */
+.chroma .gs {
+  font-weight: bold;
+}
+
+/* GenericTraceback */
+.chroma .gt {
+  color: #c0696b;
+}
+
+/* GenericSubheading */
+.chroma .gu {
+  color: #79a39b;
+}
+
+/* LiteralNumberIntegerLong */
+.chroma .il {
+  color: #c1866b;
+}
+
+/* Keyword */
+.chroma .k {
+  color: #ab9ac6;
+}
+
+/* KeywordConstant */
+.chroma .kc {
+  color: #bc9c6b;
+}
+
+/* KeywordDeclaration */
+.chroma .kd {
+  color: #ab9ac6;
+}
+
+/* KeywordNamespace */
+.chroma .kn {
+  color: #bc9c6b;
+}
+
+/* KeywordPseudo */
+.chroma .kp {
+  color: #ab9ac6;
+  font-weight: bold;
+}
+
+/* KeywordReserved */
+.chroma .kr {
+  color: #ab9ac6;
+}
+
+/* KeywordType */
+.chroma .kt {
+  color: #bc9c6b;
+}
+
+/* Literal */
+/* LiteralDate */
+/* LiteralNumber */
+.chroma .m {
+  color: #c1866b;
+}
+
+/* LiteralNumberBin */
+.chroma .mb {
+  color: #c1866b;
+}
+
+/* LiteralNumberFloat */
+.chroma .mf {
+  color: #c1866b;
+}
+
+/* LiteralNumberHex */
+.chroma .mh {
+  color: #c1866b;
+}
+
+/* LiteralNumberInteger */
+.chroma .mi {
+  color: #c1866b;
+}
+
+/* LiteralNumberOct */
+.chroma .mo {
+  color: #c1866b;
+}
+
+/* Name */
+.chroma .n {
+  color: #7fa0aa;
+}
+
+/* NameAttribute */
+.chroma .na {
+  color: #bc9c6b;
+}
+
+/* NameBuiltin */
+.chroma .nb {
+  color: #c1866b;
+}
+
+/* NameClass */
+.chroma .nc {
+  color: #bc9c6b;
+}
+
+/* NameDecorator */
+.chroma .nd {
+  color: #ca9ebd;
+}
+
+/* NameException */
+.chroma .ne {
+  color: #c0696b;
+}
+
+/* NameFunction */
+.chroma .nf {
+  color: #8ca0bb;
+}
+
+/* NameEntity */
+.chroma .ni {
+  color: #ca9ebd;
+}
+
+/* NameLabel */
+.chroma .nl {
+  color: #bc9c6b;
+}
+
+/* NameNamespace */
+.chroma .nn {
+  color: #bc9c6b;
+}
+
+/* NameConstant */
+.chroma .no {
+  color: #bc9c6b;
+}
+
+/* NameTag */
+.chroma .nt {
+  color: #ab9ac6;
+}
+
+/* NameVariable */
+.chroma .nv {
+  color: #c1866b;
+}
+
+/* NameOther */
+.chroma .nx {
+  color: #c1866b;
+}
+
+/* Operator */
+.chroma .o {
+  color: #79a39b;
+}
+
+/* OperatorWord */
+.chroma .ow {
+  color: #79a39b;
+  font-weight: bold;
+}
+
+/* Punctuation */
+.chroma .p {
+  color: #63787d;
+}
+
+/* NameProperty */
+/* LiteralString */
+.chroma .s {
+  color: #91ac75;
+}
+
+/* LiteralStringSingle */
+.chroma .s1 {
+  color: #91ac75;
+}
+
+/* LiteralStringDouble */
+.chroma .s2 {
+  color: #91ac75;
+}
+
+/* LiteralStringAffix */
+.chroma .sa {
+  color: #91ac75;
+}
+
+/* LiteralStringBacktick */
+.chroma .sb {
+  color: #91ac75;
+}
+
+/* LiteralStringChar */
+.chroma .sc {
+  color: #91ac75;
+}
+
+/* LiteralStringDoc */
+.chroma .sd {
+  color: #91ac75;
+}
+
+/* LiteralStringEscape */
+.chroma .se {
+  color: #8ca0bb;
+}
+
+/* LiteralStringHeredoc */
+.chroma .sh {
+  color: #91ac75;
+}
+
+/* LiteralStringInterpol */
+.chroma .si {
+  color: #91ac75;
+}
+
+/* LiteralStringRegex */
+.chroma .sr {
+  color: #8ca0bb;
+}
+
+/* LiteralStringSymbol */
+.chroma .ss {
+  color: #91ac75;
+}
+
+/* LiteralStringOther */
+.chroma .sx {
+  color: #91ac75;
+}
+
+/* NameVariableClass */
+.chroma .vc {
+  color: #bc9c6b;
+}
+
+/* NameVariableGlobal */
+.chroma .vg {
+  color: #c1866b;
+}
+
+/* NameVariableInstance */
+.chroma .vi {
+  color: #bc9c6b;
+}
+
+/* NameVariableMagic */
+/* TextWhitespace */
+.chroma .w {
+  color: #ced9e0;
+}
+
+.CodeMirror .cm-property,
+.CodeMirror.cm-s-default .cm-property,
+.CodeMirror.cm-s-paper .cm-property {
+  color: #171c1f;
+}
+.CodeMirror .cm-header,
+.CodeMirror.cm-s-default .cm-header,
+.CodeMirror.cm-s-paper .cm-header {
+  color: #171c1f;
+}
+.CodeMirror .cm-quote,
+.CodeMirror.cm-s-default .cm-quote,
+.CodeMirror.cm-s-paper .cm-quote {
+  color: #91ac75;
+}
+.CodeMirror .cm-keyword,
+.CodeMirror.cm-s-default .cm-keyword,
+.CodeMirror.cm-s-paper .cm-keyword {
+  color: #ab9ac6;
+}
+.CodeMirror .cm-atom,
+.CodeMirror.cm-s-default .cm-atom,
+.CodeMirror.cm-s-paper .cm-atom {
+  color: #c0696b;
+}
+.CodeMirror .cm-number,
+.CodeMirror.cm-s-default .cm-number,
+.CodeMirror.cm-s-paper .cm-number {
+  color: #c1866b;
+}
+.CodeMirror .cm-def,
+.CodeMirror.cm-s-default .cm-def,
+.CodeMirror.cm-s-paper .cm-def {
+  color: #171c1f;
+}
+.CodeMirror .cm-variable-2,
+.CodeMirror.cm-s-default .cm-variable-2,
+.CodeMirror.cm-s-paper .cm-variable-2 {
+  color: #79a39b;
+}
+.CodeMirror .cm-variable-3,
+.CodeMirror.cm-s-default .cm-variable-3,
+.CodeMirror.cm-s-paper .cm-variable-3 {
+  color: #7baa92;
+}
+.CodeMirror .cm-comment,
+.CodeMirror.cm-s-default .cm-comment,
+.CodeMirror.cm-s-paper .cm-comment {
+  color: #9cb2b8;
+}
+.CodeMirror .cm-string,
+.CodeMirror.cm-s-default .cm-string,
+.CodeMirror.cm-s-paper .cm-string {
+  color: #91ac75;
+}
+.CodeMirror .cm-string-2,
+.CodeMirror.cm-s-default .cm-string-2,
+.CodeMirror.cm-s-paper .cm-string-2 {
+  color: #91ac75;
+}
+.CodeMirror .cm-meta,
+.CodeMirror.cm-s-default .cm-meta,
+.CodeMirror.cm-s-paper .cm-meta {
+  color: #c1866b;
+}
+.CodeMirror .cm-qualifier,
+.CodeMirror.cm-s-default .cm-qualifier,
+.CodeMirror.cm-s-paper .cm-qualifier {
+  color: #c1866b;
+}
+.CodeMirror .cm-builtin,
+.CodeMirror.cm-s-default .cm-builtin,
+.CodeMirror.cm-s-paper .cm-builtin {
+  color: #c1866b;
+}
+.CodeMirror .cm-bracket,
+.CodeMirror.cm-s-default .cm-bracket,
+.CodeMirror.cm-s-paper .cm-bracket {
+  color: #171c1f;
+}
+.CodeMirror .cm-tag,
+.CodeMirror.cm-s-default .cm-tag,
+.CodeMirror.cm-s-paper .cm-tag {
+  color: #bc9c6b;
+}
+.CodeMirror .cm-attribute,
+.CodeMirror.cm-s-default .cm-attribute,
+.CodeMirror.cm-s-paper .cm-attribute {
+  color: #bc9c6b;
+}
+.CodeMirror .cm-hr,
+.CodeMirror.cm-s-default .cm-hr,
+.CodeMirror.cm-s-paper .cm-hr {
+  color: #63787d;
+}
+.CodeMirror .cm-url,
+.CodeMirror.cm-s-default .cm-url,
+.CodeMirror.cm-s-paper .cm-url {
+  color: #8ca0bb;
+}
+.CodeMirror .cm-link,
+.CodeMirror.cm-s-default .cm-link,
+.CodeMirror.cm-s-paper .cm-link {
+  color: #8ca0bb;
+}
+.CodeMirror .cm-error,
+.CodeMirror.cm-s-default .cm-error,
+.CodeMirror.cm-s-paper .cm-error {
+  color: #c0696b;
+}
+
+.monaco-editor .selected-text {
+  background-color: #ced9e0 !important;
+}
+.monaco-editor .margin-view-overlays .line-numbers {
+  color: #526469 !important;
+}
+.monaco-editor .line-numbers.active-line-number {
+  color: #91ac75 !important;
+}
+.monaco-editor .view-overlays .current-line,
+.monaco-editor .margin-view-overlays .current-line-margin {
+  background-color: rgb(204.5, 216.6, 228) !important;
+}
+.monaco-editor .mtk1 {
+  color: #171c1f !important;
+}
+.monaco-editor .mtk2 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk3 {
+  color: #c1866b !important;
+}
+.monaco-editor .mtk4 {
+  color: #7baa92 !important;
+}
+.monaco-editor .mtk5 {
+  color: #171c1f !important;
+}
+.monaco-editor .mtk6 {
+  color: #ab9ac6 !important;
+}
+.monaco-editor .mtk7 {
+  color: #c1866b !important;
+}
+.monaco-editor .mtk8 {
+  color: #63787d !important;
+}
+.monaco-editor .mtk9 {
+  color: #ab9ac6 !important;
+}
+.monaco-editor .mtk10 {
+  color: #526469 !important;
+}
+.monaco-editor .mtk11 {
+  color: #7baa92 !important;
+}
+.monaco-editor .mtk12 {
+  color: #7baa92 !important;
+}
+.monaco-editor .mtk13 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk14 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk15 {
+  color: #ab9ac6 !important;
+}
+.monaco-editor .mtk16 {
+  color: #63787d !important;
+}
+.monaco-editor .mtk17 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk18 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk19 {
+  color: #7baa92 !important;
+}
+.monaco-editor .mtk20 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk21 {
+  color: #91ac75 !important;
+}
+.monaco-editor .mtk22 {
+  color: #ff69b4 !important;
+}
+.monaco-editor .mtk23 {
+  color: #8ca0bb !important;
+}
+.monaco-editor .mtk24 {
+  color: #c1866b !important;
+}
+.monaco-editor .mtk25 {
+  color: #ca9ebd !important;
+}
+.monaco-editor .bracket-highlighting-0 {
+  color: rgb(124.4, 74.2, 76.6) !important;
+}
+.monaco-editor .bracket-highlighting-1 {
+  color: rgb(125, 91.6, 76.6) !important;
+}
+.monaco-editor .bracket-highlighting-2 {
+  color: rgb(122, 104.8, 76.6) !important;
+}
+.monaco-editor .bracket-highlighting-3 {
+  color: rgb(96.2, 114.4, 82.6) !important;
+}
+.monaco-editor .bracket-highlighting-4 {
+  color: rgb(93.2, 107.2, 124.6) !important;
+}
+.monaco-editor .bracket-highlighting-5 {
+  color: rgb(111.8, 103.6, 131.2) !important;
+}
