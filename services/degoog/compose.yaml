@@ -3,18 +3,21 @@ services:
     container_name: degoog
     image: ghcr.io/degoog-org/degoog:latest
     restart: unless-stopped
-    user: 1000:1000
-    # read_only: true
-    # security_opt:
-    #   - no-new-privileges:true
     depends_on:
-      - cloudflare-tunnel
+      cloudflare-tunnel:
+        condition: service_started
+      degoog-cache:
+        condition: service_started
+      degoog-db:
+        condition: service_healthy
     networks:
       - cloudflare
     volumes:
       - ./data.vol:/app/data
     environment:
       DEGOOG_PUBLIC_INSTANCE: true
+      DEGOOG_VALKEY_URL: "redis://degoog-cache:6379"
+    env_file: ".env"
     logging:
       driver: "json-file"
       options:
@@ -24,3 +27,55 @@ services:
       resources:
         limits:
           memory: 120M
+
+  degoog-cache:
+    container_name: degoog-cache
+    image: valkey/valkey:8-alpine
+    restart: unless-stopped
+    command: ["valkey-server", "--save", "", "--appendonly", "no"]
+    read_only: true
+    user: "1000:1000"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 20M
+
+  degoog-db:
+    container_name: degoog-db
+    image: postgres:18-alpine
+    restart: unless-stopped
+    volumes:
+      - ./db.vol:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: degoog
+      POSTGRES_USER: degoog
+    env_file: ".env"
+    user: "70:70"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U degoog -d degoog"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 60M
