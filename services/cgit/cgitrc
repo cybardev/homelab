@@ -1,0 +1,10 @@
+root-title=Cy | git
+root-desc=Versions Controlled
+root-readme=/srv/git/cybardev/README.md
+
+favicon=/cgit/favicon.ico
+css=/cgit/cgit.css
+js=/cgit/cgit.js
+
+virtual-root=/
+scan-path=/srv/git

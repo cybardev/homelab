@@ -1,0 +1,26 @@
+networks:
+  cgit:
+
+services:
+  cgit:
+    container_name: cgit
+    image: ghcr.io/cybardev/cgit:latest
+    restart: unless-stopped
+    networks:
+      - cgit
+      - cloudflare
+    depends_on:
+      - cloudflare-tunnel
+    volumes:
+      - ./data.vol:/srv/git:ro
+      - ./cgitrc:/etc/cgitrc.local:ro
+      - ./lighttpd.conf:/etc/lighttpd/lighttpd.conf:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+    deploy:
+      resources:
+        limits:
+          memory: 50M
