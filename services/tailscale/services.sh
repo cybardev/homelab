@@ -2,7 +2,8 @@
 tailscale serve --service=svc:vault --https=443 127.0.0.1:9999
 tailscale serve --service=svc:radicale --https=443 127.0.0.1:5232
 tailscale serve --service=svc:glances --https=443 127.0.0.1:61208
-tailscale serve --service=svc:drive --https=443 127.0.0.1:5212
+tailscale serve --service=svc:cloud --https=443 127.0.0.1:8080
+# tailscale serve --service=svc:drive --https=443 127.0.0.1:5212
 # tailscale serve --service=svc:git --tcp=222 tcp://127.0.0.1:222
 # tailscale serve --service=svc:cobalt --https=443 127.0.0.1:9000
 # tailscale serve --service=svc:manga --https=443 127.0.0.1:4567
